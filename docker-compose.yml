@@ -48,20 +48,20 @@ services:
     depends_on:
       - zabbix-server
 
-  zabbix-agent:
-    image: zabbix/zabbix-agent:6.0-ubuntu-latest
-    container_name: zabbix-agent
-    restart: always
-    environment:
-      ZBX_SERVER_HOST: zabbix-server
-      ZBX_HOSTNAME: zabbix-agent
-      ZBX_SERVER_ACTIVE: zabbix-server
-    ports:
-      - "10050:10050"
-    networks:
-      - zabbix-net
-    depends_on:
-      - zabbix-server
+  # zabbix-agent:
+  #   image: zabbix/zabbix-agent:6.0-ubuntu-latest
+  #   container_name: zabbix-agent
+  #   restart: always
+  #   environment:
+  #     ZBX_SERVER_HOST: zabbix-server
+  #     ZBX_HOSTNAME: zabbix-agent
+  #     ZBX_SERVER_ACTIVE: zabbix-server
+  #   ports:
+  #     - "10050:10050"
+  #   networks:
+  #     - zabbix-net
+  #   depends_on:
+  #     - zabbix-server
 
 networks:
   zabbix-net:
