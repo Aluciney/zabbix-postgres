@@ -24,6 +24,8 @@ services:
       POSTGRES_PASSWORD: zabbix_pass
       ZBX_JAVA_GATEWAY: ""
       ZBX_JAVA_GATEWAY_PORT: "10052"
+    ports:
+      - "10051:10051"
     depends_on:
       - postgres
     networks:
