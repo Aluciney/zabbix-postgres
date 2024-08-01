@@ -1,0 +1,39 @@
+zabbix_export:
+  version: '6.0'
+  date: '2024-08-01T07:00:17Z'
+  media_types:
+    - name: Whatsapp
+      type: WEBHOOK
+      parameters:
+        - name: Titulo
+          value: '{TITULO}'
+        - name: Numero
+          value: '{NUMERO}'
+        - name: Mensagem
+          value: '{MENSAGEM}'
+      script: |
+        try {
+            // Parsing the input JSON value to extract parameters
+            var params = JSON.parse(value);
+            
+            // Defining the Venon API parameters
+            var venonParams = {
+                url: 'http://10.1.8.28:3001/api/message',
+                query: "?number=" + encodeURIComponent(params.Numero) + '&message=' + encodeURIComponent(params.Mensagem)
+            };
+            
+            // Creating an instance of HttpRequest
+            var request = new HttpRequest();
+        
+            // Sending the GET request to the Venon API
+            var response = request.get(venonParams.url + venonParams.query);
+        
+            // Returning the response as a JSON string
+            return JSON.stringify(response);
+        } catch (error) {
+            // Logging the error in Zabbix
+            Zabbix.log(3, '[Venon Webhook] ERROR: ' + error);
+            // Throwing the error to indicate failure
+            throw 'Sending failed: ' + error;
+        }
+      description: 'Envia uma mensagem via Whatsapp'
