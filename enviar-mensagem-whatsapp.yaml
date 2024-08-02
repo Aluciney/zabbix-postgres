@@ -6,11 +6,11 @@ zabbix_export:
       type: WEBHOOK
       parameters:
         - name: Titulo
-          value: '{TITULO}'
+          value: '{ALERT.SUBJECT}'
         - name: Numero
-          value: '{NUMERO}'
+          value: '{ALERT.SENDTO}'
         - name: Mensagem
-          value: '{MENSAGEM}'
+          value: '{ALERT.MESSAGE}'
       script: |
         try {
             // Parsing the input JSON value to extract parameters
