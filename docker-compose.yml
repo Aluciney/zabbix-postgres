@@ -49,7 +49,7 @@ services:
       - zabbix-server
 
   # zabbix-agent:
-  #   image: zabbix/zabbix-agent:6.0-ubuntu-latest
+  #   image: zabbix/zabbix-agent2:6.0-ubuntu-latest
   #   container_name: zabbix-agent
   #   restart: always
   #   environment:
